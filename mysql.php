@@ -24,11 +24,11 @@ if($TGBot->settings['adminMySQL']){
         }else{
             if($la['to_update']){
                 if($TGBot->type == 'supergroup' or $TGBot->type == 'group' or $TGBot->type == 'channel'){
-                    $update = $TGBot->mdb->prepare("UPDATE EasyTGBot SET action=?, title=?, type=?, to_update=? WHERE chat_id=?"); 
-                    $update->execute(['none', $TGBot->title, $TGBot->type, true, $TGBot->chat_id]);
+                    $update = $TGBot->mdb->prepare("UPDATE EasyTGBot SET title=?, type=?, to_update=? WHERE chat_id=?"); 
+                    $update->execute([$TGBot->title, $TGBot->type, true, $TGBot->chat_id]);
                 }else{
-                    $update = $TGBot->mdb->prepare("UPDATE EasyTGBot SET first_name=?, last_name=?, username=?, action=?, type=?, to_update=? WHERE chat_id=?"); 
-                    $update->execute([$TGBot->first_name, $TGBot->last_name, $TGBot->username, 'none', $TGBot->type, true, $TGBot->chat_id]);
+                    $update = $TGBot->mdb->prepare("UPDATE EasyTGBot SET first_name=?, last_name=?, username=?, type=?, to_update=? WHERE chat_id=?"); 
+                    $update->execute([$TGBot->first_name, $TGBot->last_name, $TGBot->username, $TGBot->type, true, $TGBot->chat_id]);
                 }
             }
         }
