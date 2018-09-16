@@ -25,7 +25,7 @@ if($TGBot->settings['adminPostGreSQL']){
         }
     }else{
         if($la['to_update']){
-            if($TGBot->type == 'supergroup' or $TGBot->type == 'group' or $TGBot->type == 'channel'){
+            if(in_array($TGBot->type, ['supergroup','group','channel'])){
                 $update = $TGBot->pdb->prepare("UPDATE EasyTGBot SET title=?, type=?, to_update=? WHERE chat_id=?"); 
                 $update->execute([$TGBot->title, $TGBot->type, true, $TGBot->chat_id]);
             }else{
